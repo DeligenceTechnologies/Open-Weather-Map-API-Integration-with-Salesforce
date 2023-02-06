@@ -1,0 +1,23 @@
+<aura:component controller="openWeatherWebserviceController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="CityName" type="string"/>
+    <aura:attribute name="weatherData" type="Object"/>
+    <aura:attribute name="hasCity" type="boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:card title="Weather Conditions">
+       
+             
+             <aura:if isTrue="{!v.hasCity}">
+                <lightning:input type="Text" name="City" lablel="Enter City Name" value="{!v.CityName}"/><br/>
+                <lightning:button variant="brand" iconname="utility:search" label="Search" title="Search" onclick="{!c.searchController}"/><br/>
+            
+        </aura:if>
+        <b>
+            Temperature: <ui:outputText value="{!v.weatherData.temperature}"/>°C<br/>
+            Feels Like: <ui:outputText value="{!v.weatherData.feelsLike}"/>°C<br/>
+            Minimum Temperature: <ui:outputText value="{!v.weatherData.minTemp}"/>°C<br/>
+            Maximum Temperature: <ui:outputText value="{!v.weatherData.maxTemp}"/>°C<br/>
+            Pressure: <ui:outputText value="{!v.weatherData.pressure}"/><br/>
+            Humidity: <ui:outputText value="{!v.weatherData.humidity}"/><br/>
+        </b>
+    </lightning:card>
+</aura:component>
